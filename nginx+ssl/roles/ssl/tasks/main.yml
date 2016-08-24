@@ -1,0 +1,28 @@
+---
+
+- name: Install dependencies
+  action: apt name={{item}} state=installed
+  with_items:
+    - git
+    - bc
+
+- name: Install certbot i.e the letsencrypt client
+  git: repo={{lets_encrypt_repo}} dest={{install_dir}}
+  tags: install_lets_encrypt
+
+- name: Generate certificates
+  command: "{{install_dir}}/certbot-auto certonly --webroot -w {{web_root}} -d {{domain_name}}  --email {{domain_email}} --non-interactive --agree-tos"
+  tags: generate_certs
+
+- name: Generate Diffie-Hellman 2048
+  command: openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+  tags: generate_DH
+
+- name: Setup ssl config for nginx
+  template: src={{nginx_config_src}} dest={{nginx_config_dest}} force=yes owner=root
+  notify: 
+         - restart_nginx
+  tags: nginx_ssl
+
+
+

@@ -1,0 +1,12 @@
+---
+#Playbook to install nginx and ssl
+
+- name : nginx and ssl installation
+  hosts : web
+  become: yes
+  become_method: sudo
+
+  roles: 
+      - web
+      - ssl
+
