@@ -7,7 +7,6 @@ Follow the steps to get it up and running
 3. Replace variable according to your environment in roles/ssl/vars/main.yml
 4. Use the following command to run the playbook 
   - `ansible-playbook -i hosts -u <your_remote_user> main.yml` 
-5. Use the switch -K if sudo is not passwordless
 
 ####  Note :
 1. Please note that the playbook runs only on Ubuntu and has been tested on Ubuntu 14.04
