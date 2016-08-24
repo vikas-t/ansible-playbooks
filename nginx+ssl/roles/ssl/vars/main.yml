@@ -1,0 +1,19 @@
+---
+
+#All variables used acress ssl role
+
+lets_encrypt_repo : https://github.com/certbot/certbot
+
+install_dir : /opt/certbot
+
+web_root : /usr/share/nginx/html
+
+domain_name: www.mydomain.com 
+
+domain_email: myemail@mydomain.com
+
+nginx_config_src: roles/ssl/files/default_nginx.conf
+
+nginx_config_dest: /etc/nginx/sites-available/default
+
+
